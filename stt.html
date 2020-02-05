@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+</head>
+<body>
+<center><h1>voice form</h1></center>
+
+<div style="padding-left:450px">
+<form name="myform" method="post" onsubmit="if (!window.__cfRLUnblockHandlers) return false; return validateform()" data-cf-modified-9f635ef6155d5eedf3678ab7-="">
+ 
+<div class="form-group" onmouseenter="playAudio()">
+
+
+      <audio id="myAudio">
+
+        <source src="first_name.m4a" type="audio/mpeg">
+      </audio> 
+
+<label for="first">first Name:</label>
+<input type="text" class="form-control" style="width:50%" id="first" placeholder="Enter first" onclick="if (!window.__cfRLUnblockHandlers) return false; startDictation('first')" data-cf-modified-9f635ef6155d5eedf3678ab7-="">
+ 
+</div>
+<br><br><br><br><br><br><br>
+ 
+ 
+<div class="form-group" onmouseenter="playAudio1()">
+<audio id="myAudio1">
+
+        <source src="last_name.m4a" type="audio/mpeg">
+      </audio>
+<label for="last">last name:</label>
+<input type="text" class="form-control" id="last" style="width:50%" placeholder="Enter last" onclick="if (!window.__cfRLUnblockHandlers) return false; startDictation('last')" data-cf-modified-9f635ef6155d5eedf3678ab7-="">
+ 
+</div>
+  
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="9f635ef6155d5eedf3678ab7-|49" defer=""></script></body>
+<script type="9f635ef6155d5eedf3678ab7-text/javascript">
+      var m = document.getElementById("myAudio");
+      var y = document.getElementById("myAudio1");
+
+
+
+     function playAudio1() {
+      y.play();
+    }
+    function playAudio() {
+    m.play();
+   }
+    
+     function startDictation(x) {
+          
+  
+    if (window.hasOwnProperty('webkitSpeechRecognition')) {
+
+      var recognition = new webkitSpeechRecognition();
+
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.lang = "hi-In";
+      recognition.start();
+      recognition.onresult = function(e) {
+        document.getElementById(x).value= e.results[0][0].transcript;
+        recognition.stop();
+        document.getElementById('labnol').submit();
+       };
+
+      recognition.onerror = function(e) {
+        recognition.stop();
+      }
+
+    }
+  
+  
+  }
+    </script>
+</html>
